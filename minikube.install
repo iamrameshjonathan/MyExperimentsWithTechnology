@@ -1,0 +1,11 @@
+Install Minikube
+
+MacOSX:
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.13.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+
+Linux:
+url -Lo minikube https://storage.googleapis.com/minikube/releases/v0.13.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+
+Usage: https://github.com/kubernetes/minikube/blob/v0.13.0/README.md
+
+

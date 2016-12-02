@@ -1,0 +1,41 @@
+date -u && curl -s -v https://app.datadoghq.com 2>&1 | grep Date
+sudo /etc/init.d/datadog-agent start
+sudo /etc/init.d/datadog-agent stop
+sudo /etc/init.d/datadog-agent restart
+sudo /etc/init.d/datadog-agent status
+sudo /etc/init.d/datadog-agent info
+sudo /etc/init.d/datadog-agent info -v
+Configuration files for integrations are located in /etc/dd-agent/conf.d/
+The configuration file for the Agent is located at /etc/dd-agent/datadog.conf
+Logs for the subsystems are in the following files:
+/var/log/supervisor/datadog-supervisord.log (since 3.8.0)
+/var/log/datadog/collector.log
+/var/log/datadog/dogstatsd.log
+/var/log/datadog/forwarder.log
+
+docker exec -it dd-agent /etc/init.d/datadog-agent status
+docker exec -it dd-agent /etc/init.d/datadog-agent info -v
+cp /conf.d/etcd.yaml /etc/dd-agent/conf.d/etcd.yaml
+cp /conf.d/kubernetes.yaml /etc/dd-agent/conf.d/kubernetes.yaml
+cp /conf.d/kube.yaml /etc/dd-agent/conf.d/kubernetes.yaml
+cp /conf.d/docker_daemon.yaml /etc/dd-agent/conf.d/docker_daemon.yaml
+
+
+docker restart dd-agent
+
+export KUBE_RUNTIME_CONFIG="extensions/v1=true,extensions/v1/daemonset=true,extensions/v1/deployments=true"
+
+docker run -d \
+--name dd-agent \
+-v /var/run/docker.sock:/var/run/docker.sock:ro \
+-v /proc/:/host/proc/:ro \
+-v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
+-v /opt/dd-agent-conf.d:/conf.d:ro \
+-e DD_HOSTNAME=`hostname` \
+-e LOG_LEVEL=DEBUG \
+-e NON_LOCAL_TRAFFIC=true \
+-e API_KEY=189679e8526733f8ac4d6c4ec88189e7 \
+-e KUBERNETES=yes \
+-e TAGS="ose, tesseract,site:gld,cluster_name=ose01" \
+datadog/docker-dd-agent:latest
+

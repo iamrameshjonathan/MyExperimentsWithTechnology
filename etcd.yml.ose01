@@ -1,0 +1,13 @@
+init_config:
+
+instances:
+  - url: "https://ose01.gld.dreamworks.net:4001"
+    timeout: 10
+    ssl_keyfile: /etc/origin/master/master.etcd-client.key
+    ssl_certfile: /etc/origin/master/master.etcd-client.crt
+    ssl_cert_validation: false
+    ssl_ca_certs: /etc/origin/master/master.etcd-ca.crt
+    tags:
+    - ose33master
+    - ose33dd
+    - ose33test

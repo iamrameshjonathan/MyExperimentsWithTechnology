@@ -1,0 +1,21 @@
+init_config:
+
+instances:
+  - url: "https://c-ose-3001.blr.dreamworks.net:2379"
+    timeout: 10
+    ssl_keyfile: /conf.d/master.etcd-client.key
+    ssl_certfile: /conf.d/master.etcd-client.crt
+    ssl_cert_validation: false
+    ssl_ca_certs: /conf.d/master.etcd-ca.crt
+  - url: "https://c-ose-3002.blr.dreamworks.net:2379"
+    timeout: 10
+    ssl_keyfile: /conf.d/master.etcd-client.key
+    ssl_certfile: /conf.d/master.etcd-client.crt
+    ssl_cert_validation: false
+    ssl_ca_certs: /conf.d/master.etcd-ca.crt
+  - url: "https://c-ose-3014.blr.dreamworks.net:2379"
+    timeout: 10
+    ssl_keyfile: /conf.d/master.etcd-client.key
+    ssl_certfile: /conf.d/master.etcd-client.crt
+    ssl_cert_validation: false
+    ssl_ca_certs: /conf.d/master.etcd-ca.cr
