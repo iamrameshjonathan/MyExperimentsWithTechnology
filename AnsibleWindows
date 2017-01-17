@@ -1,0 +1,21 @@
+SH52032700
+
+rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install ansible vim python-pip -y
+pip install "pywinrm>=0.1.1"
+
+[WinServers]
+Win1Server ansible_host=54.166.241.63
+
+mkdir host_vars
+ansible-vault create host_vars/Win1Server
+
+ansible_user: Administrator
+ansible_password: SecretPasswordGoesHere
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+
+
+
